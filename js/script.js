@@ -1,5 +1,5 @@
 const mario = document.querySelector('.mario');
-const pipe = document.querySelector('.pipe'); // Corrigido para selecionar o elemento com a classe 'pipe'
+const pipe = document.querySelector('.pipe');
 
 const jump = () => {
   mario.classList.add('jump');
@@ -9,9 +9,9 @@ const jump = () => {
   }, 500);
 }
 
-const loop = setInterval(() => {
+const checkCollision = () => {
   const pipePosition = pipe.offsetLeft;
-  const marioPosition = parseInt(window.getComputedStyle(mario).bottom); // ParseInt para garantir que o valor seja tratado como número
+  const marioPosition = parseInt(window.getComputedStyle(mario).bottom);
 
   console.log(marioPosition);
 
@@ -22,11 +22,16 @@ const loop = setInterval(() => {
     mario.style.animation = 'none';
     mario.style.bottom = `${marioPosition}px`;
 
-     mario.src = './imagens/game-over.png';
-     mario.style.width = '75px'
-     mario.style.marginLeft = '50px'
+    mario.src = './imagens/game-over.png';
+    mario.style.width = '75px'
+    mario.style.marginLeft = '50px'
   }
+}
 
-}, 10);
+const loop = setInterval(checkCollision, 10);
 
 document.addEventListener('keydown', jump);
+
+// Adicionar um ouvinte de eventos de toque
+document.addEventListener('touchstart', jump);
+
