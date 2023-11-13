@@ -34,4 +34,3 @@ document.addEventListener('keydown', jump);
 
 // Adicionar um ouvinte de eventos de toque
 document.addEventListener('touchstart', jump);
-
